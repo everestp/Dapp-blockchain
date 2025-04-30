@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers'; // ✅ Correct import
 import abi from './contract/chai.json';
+import Buy from './components/Buy/Buy';
 
 function App() {
   const [state, setState] = useState({
@@ -39,42 +40,17 @@ function App() {
     };
 
     connectWallet();
-    const wallet = ethers.Wallet.createRandom();
+    
 
 
 
   
   }, []);
   console.log(state)
-  const wallet = ethers.Wallet.createRandom();
-  console.log("Address:", wallet.address);
-  console.log("Private Key:", wallet.privateKey);
   
-//   async function sendTrasaction(privateKey,provider) {
-//     const senderWallet = new ethers.Wallet(privateKey, provider,recipientAddress);
-//     const tx = await senderWallet.sendTransaction({
-//       to: recipientAddress,
-//       value: ethers.parseEther("0.01")
-//     });
-//     console.log("Transaction Hash:", tx.hash);
-//   }
-
-// sendTrasaction(wallet.privateKey,state.provider,43434334);
-
-
   return (
     <>
-      <h1>Chai Dapp</h1>
-      {state.signer ? ( 
-        <div>
-
-          <p>Wallet Connected ✅</p>
-         
-        </div>
-      ) : (
-        <p>Connecting wallet...</p>
-       
-      )}
+    <Buy state={state}/>
     </>
   );
 }
